@@ -17,3 +17,8 @@ A proof-of-concept Python script to cause MFA fatigue for known O365 credentials
 
 
 ## Usage
+
+<h2 align="center">
+  <img src="static/mfatigue_usage.png" alt="mfatigue_usage" width="90%">
+  <br>
+</h2>
