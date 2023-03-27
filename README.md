@@ -1,7 +1,7 @@
 # mfatigue
 A proof-of-concept Python script to cause MFA fatigue for known O365 credentials.
 
-> This project is intended strictly for educational, authorised testing, and research purposes only. 
+> This project is intended strictly for educational, authorised testing, and security research purposes only. 
 
 > The author does not assume any responsibility for the use of this project. 
 
