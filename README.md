@@ -7,7 +7,7 @@ A proof-of-concept Python script to cause MFA fatigue for known O365 credentials
 
 > By using this project, you agree to use it at your own risk and acknowledge that the author is not liable for any misuse, damage, or legal consequences that may arise from its use.
 
-# Contents
+# Index
 
 - [Introduction](#introduction)
   - [Features](#features)
