@@ -113,7 +113,7 @@ python3 ./mfatigue.py -u targetuser@randomtestdomain.com -spf ./password.txt -ma
 
 ## Usage Notes
 Once an authenticated user session is captured, the script will ask whether you want to keep the authenticated browser session open. <br /> <br />
-Alternatively, the captured session cookies will be written to `.\captured_mfa_authed_sesisons.txt`. An example is shown on the screenshot below:
+Additionally, the captured session cookies will always be written to `.\captured_mfa_authed_sesisons.txt`. An example is shown on the screenshot below:
 <h2 align="center">
   <img src="static/captured_mfa_authed_sesisons.png" alt="captured_mfa_authed_sesisons" width="70%">
   <br>
