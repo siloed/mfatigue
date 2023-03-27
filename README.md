@@ -145,4 +145,4 @@ Options:
 # To Do
 * Explore extending support for any VPNs with push notifications.
 * Explore support for other popular authentication portals with push notifications.
-* Requests and suggestions to improve welcome.
+* Requests and suggestions for improvements welcome.
