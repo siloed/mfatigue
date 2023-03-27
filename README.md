@@ -64,6 +64,9 @@ cd ./mfatigue/
 # install the pip requirements for the tool
 python3 -m pip install -r requirements.txt
 
+# make ./geckodriver executable
+chmod +x ./geckodriver
+
 # now you can run the tool to confirm installation
 python3 ./mfatigue.py 
 ```
