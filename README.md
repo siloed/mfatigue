@@ -110,6 +110,12 @@ python3 ./mfatigue.py -u targetuser@randomtestdomain.com -spf ./password.txt
 python3 ./mfatigue.py -u targetuser@randomtestdomain.com -spf ./password.txt -max-mfa 10 --max-mfa-wait 30
 ```
 
+Once an authenticated user session is captured, the script will ask whether you want to keep the authenticated browser session open. Alternatively, the captured session cookies will be written to `.\captured_mfa_authed_sesisons.txt`. An example is shown on the screenshot below:
+<h2 align="center">
+  <img src="static/captured_mfa_authed_sesisons.png" alt="captured_mfa_authed_sesisons" width="80%">
+  <br>
+</h2>
+
 ## CLI Help
 ```
 mfatigue Usage:
