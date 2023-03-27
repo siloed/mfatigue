@@ -54,7 +54,14 @@ cd ~/my-python-venvs
 python3 -m venv mfatique_venv
 source ./mfatique_venv/bin/activate
 
-# install the pip requirements
+# Change over to where you want to download the tool e.g.
+cd ~/tools
+
+# Download mfatigue
+git clone https://github.com/siloed/mfatigue.git
+cd .\mfatigue\
+
+# install the pip requirements for the tool
 python3 -m pip install -r requirements.txt
 
 # now you can run the tool to confirm installation
