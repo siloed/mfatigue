@@ -17,6 +17,7 @@ A proof-of-concept Python script to cause MFA fatigue for known O365 credentials
 - [Usage](#usage)
   - [Quick Start](#quick-start)
   - [CLI Help](#cli-help)
+- [To Do](#to-do)
 
 # Introduction
 
@@ -125,3 +126,8 @@ Options:
   --max-mfa MAX_MFA                                             Max MFA pushes (Default: 3)
   --max-mfa-wait MAX_MFA_WAIT                                   Max wait period for an MFA push accept before sending another. (Default: 55 seconds)
 ```
+
+# To Do
+* Explore extending support for any VPNs with push notifications.
+* Explore support for other popular authentication portals with push notifications.
+* Requests and suggestions to improve welcome.
