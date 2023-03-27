@@ -121,7 +121,7 @@ Additionally, the captured session cookies will always be appended to `.\capture
 
 Now you can import the captured session cookies to your browser by using the following JavaScript:
 ```js
-var obj = JSON.parse('PASTE_JSON_BLOB_FROM_CAPTURED_SESSION');
+var obj = JSON.parse('PASTE_JSON_BLOB_FROM_CAPTURED_SESSION_HERE');
 for (let i = 0; i < obj.length; i++) { document.cookie= obj[i].name+"="+obj[i].value+"; expires=Wed, 05 Aug 2040 23:00:00 UTC; path=/"; }
 ```
 
