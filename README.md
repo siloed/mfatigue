@@ -59,7 +59,7 @@ cd ~/tools
 
 # Download mfatigue
 git clone https://github.com/siloed/mfatigue.git
-cd .\mfatigue\
+cd ./mfatigue/
 
 # install the pip requirements for the tool
 python3 -m pip install -r requirements.txt
