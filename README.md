@@ -13,6 +13,7 @@ A proof-of-concept Python script to cause MFA fatigue for known O365 credentials
   - [Features](#features)
   - [Limitations](#limitations)
 - [Setup](#setup)
+  - [Additional Setup Notes](#additional-setup-notes)
 - [Usage](#usage)
   - [Quick Start](#quick-start)
   - [CLI Help](#cli-help)
@@ -74,6 +75,13 @@ geckodriver --version
 # now you can run the tool to confirm installation
 python3 ./mfatigue.py 
 ```
+
+## Additional Setup Notes
+
+* The tested geckodriver version 0.32.2 (2023-02-08, 602aa16c20d4), has been included for compatibility.
+* If you need, you can directly download and use the above version from https://github.com/mozilla/geckodriver/releases
+* Other versions of geckodriver may or may not be compatible. They have not been tested and won't be supported.
+
 
 # Usage
 
