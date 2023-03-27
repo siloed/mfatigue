@@ -67,6 +67,10 @@ python3 -m pip install -r requirements.txt
 # make ./geckodriver executable
 chmod +x ./geckodriver
 
+# confirm geckodriver version
+geckodriver --version
+# should get: geckodriver 0.32.2 (602aa16c20d4 2023-02-08 00:09 +0000)
+
 # now you can run the tool to confirm installation
 python3 ./mfatigue.py 
 ```
