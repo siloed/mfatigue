@@ -88,10 +88,10 @@ python3 ./mfatigue.py
 # Usage
 
 ## Quick Start
-<h2 align="center">
+<h3 align="center">
   <img src="static/mfatigue_usage.png" alt="mfatigue_usage" width="90%">
   <br>
-</h2>
+</h3>
 
 **Example #1 : Basic usage with a known O365 username and password:** <br />
 -- The following will attempt 3 x MFA push notifications (default), each with a 55 second (default) wait for user acceptance.
@@ -114,10 +114,10 @@ python3 ./mfatigue.py -u targetuser@randomtestdomain.com -spf ./password.txt -ma
 ## Usage Notes
 Once an authenticated user session is captured, the script will ask whether you want to keep the authenticated browser session open. <br /> <br />
 Additionally, the captured session cookies will always be appended to `.\captured_mfa_authed_sesisons.txt`. An example is shown on the screenshot below:
-<h2 align="center">
+<h3 align="center">
   <img src="static/captured_mfa_authed_sesisons.png" alt="captured_mfa_authed_sesisons" width="70%">
   <br>
-</h2>
+</h3>
 
 Now you can import the captured session cookies to your browser by using the following JavaScript:
 ```js
