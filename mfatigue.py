@@ -35,6 +35,7 @@ from selenium.webdriver.common.keys import Keys	# used to send input
 # to support driver wait
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+
 from selenium.common.exceptions import TimeoutException
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import StaleElementReferenceException
@@ -69,7 +70,6 @@ password_inputfield_id = "passwordInput"
 okta_username_input_id = "okta-signin-username"
 okta_password_input_name = "password" # as there was no fixed id to be found
 
-
 # html element 'name' of the password field
 # passwd -> for o365 console
 # Password -> when in sts consode
@@ -84,6 +84,23 @@ okta_password_input_name = "password" # as there was no fixed id to be found
 
 # Set up the Firefox options
 firefox_options = webdriver.FirefoxOptions()
+
+# Building the AnyEC class to detect changes to page after username as been entered
+class AnyEc:
+    """ Use with WebDriverWait to combine expected_conditions
+        in an OR.
+    """
+    def __init__(self, *args):
+        self.ecs = args
+    def __call__(self, driver):
+        for fn in self.ecs:
+            try:
+                res = fn(driver)
+                if res:
+                    return True
+                    # Or return res if you need the element found
+            except:
+                pass
 
 # try:
 # 	driver.get(target)
@@ -446,15 +463,19 @@ def try_userauth(driver, wait):
 		# Get the current URL -- this is so useful to help us check if next page has loaded after sending the ENTER key. 
 		# ..else webdriver seems to check for elements in the current page which leads to mistakes
 		current_url = driver.current_url
-
+		
 		# Send keys to the username input field
 		usernameInput.send_keys(user_name)
-			
+		
 		# Try to submit it by pressing enter - (pressing enter here seems to work better than .submit() method, which gives an error)
 		usernameInput.send_keys(Keys.ENTER)
-
-		# Wait for the URL to change
-		wait.until(EC.url_changes(current_url))
+		
+		# Wait for the URL to change 
+		# wait.until(EC.url_changes(current_url))
+		# -- turned out sometimes after username entry and press enter, the URL stays the same although page goes to password field
+		# -- so trying the solution below.
+		# Wait for the new page to load (either by URL change OR username element visibility vanishes from page.. may need to fiddle with this more)
+		wait.until(AnyEc(EC.url_changes(current_url), EC.invisibility_of_element_located((By.NAME, username_inputfield_name))))
 		
 		keysend_success = True
 	except TimeoutException:
