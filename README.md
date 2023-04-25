@@ -108,7 +108,7 @@ python3 ./mfatigue.py -u targetuser@randomtestdomain.com -spf ./password.txt
 **Example #3 : When required, you can specify additional parameters such as max mfa attempts and mfa wait period:** <br />
 -- In the example below we are attemping 10 x MFA push notificatons, each with a 30 second wait for user acceptance.
 ```sh
-python3 ./mfatigue.py -u targetuser@randomtestdomain.com -spf ./password.txt -max-mfa 10 --max-mfa-wait 30
+python3 ./mfatigue.py -u targetuser@randomtestdomain.com -spf ./password.txt --max-mfa 10 --max-mfa-wait 30
 ```
 
 ## Usage Notes
