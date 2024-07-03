@@ -1,3 +1,7 @@
+Note: for Office 365 users, starting 8th May 2023 Microsoft will be enforcing “number match experience tenant-wide for all users of Microsoft Authenticator push notifications”. Therefore this method will no longer work and shared for research reference.
+
+However, for any other authentication systems (e.g. some VPNs?) that continue to use MFA push notifications, this may continue to be a risk to mitigat
+
 # mfatigue
 A proof-of-concept Python script to cause MFA fatigue for known O365 credentials.
 
